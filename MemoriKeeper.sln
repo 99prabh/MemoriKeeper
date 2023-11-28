@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoriKeeper", "MemoriKeeper\MemoriKeeper.csproj", "{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoriKeeper.Model", "MemoriKeeper.Model\MemoriKeeper.Model.csproj", "{0553D870-7693-446A-9652-F246480B53AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0553D870-7693-446A-9652-F246480B53AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0553D870-7693-446A-9652-F246480B53AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0553D870-7693-446A-9652-F246480B53AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0553D870-7693-446A-9652-F246480B53AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D1072D9-7035-4437-ACA6-AEC9329EE8EC}
+	EndGlobalSection
+EndGlobal

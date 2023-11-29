@@ -1,0 +1,33 @@
+﻿@model ICollection<FileType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="text-center">File Types</h4>
+        <hr />
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>File Type Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.TypeName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

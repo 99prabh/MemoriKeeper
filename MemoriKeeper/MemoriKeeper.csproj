@@ -12,4 +12,10 @@
     <ProjectReference Include="..\MemoriKeeper.Model\MemoriKeeper.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\FileType\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\FileType\" />
+  </ItemGroup>
 </Project>

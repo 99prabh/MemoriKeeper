@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Net.Mail;
-using System.Reflection.Emit;
-using MemoriKeeper.Model.Models;
+﻿using MemoriKeeper.Model.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.FileIO;
 
 namespace MemoriKeeper.Model.DatabaseContect
 {
@@ -11,6 +7,7 @@ namespace MemoriKeeper.Model.DatabaseContect
     {
         public MemoriKeeperContext(DbContextOptions<MemoriKeeperContext> options) : base(options)
         {
+            
         }
 
         public DbSet<FileType> FileTypes { get; set; }

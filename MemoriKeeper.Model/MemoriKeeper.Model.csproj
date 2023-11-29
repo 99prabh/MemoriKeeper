@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="DatabaseContect\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DatabaseContect\" />
+  </ItemGroup>
 </Project>

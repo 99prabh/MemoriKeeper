@@ -1,7 +1,16 @@
+using MemoriKeeper.Model.DatabaseContect;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddXmlDataContractSerializerFormatters();
+
+// Database connection string path.
+builder.Services.AddDbContext<MemoriKeeperContext>(optins =>
+{
+    optins.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 

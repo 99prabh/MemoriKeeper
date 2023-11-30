@@ -3,9 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoriKeeper", "MemoriKeeper\MemoriKeeper.csproj", "{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoriKeeper", "MemoriKeeper\MemoriKeeper.csproj", "{AEA17EAC-8707-439D-A023-B4BB0E8CFBCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoriKeeper.Model", "MemoriKeeper.Model\MemoriKeeper.Model.csproj", "{0553D870-7693-446A-9652-F246480B53AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoriKeeper.Model", "MemoriKeeper.Model\MemoriKeeper.Model.csproj", "{0553D870-7693-446A-9652-F246480B53AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{337CD72D-AAC2-42CB-A6CA-1E6C7C2EAFB9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoriKeeper.UnitTest", "MemoriKeeper.UnitTest\MemoriKeeper.UnitTest.csproj", "{4018F323-53D1-49F7-814E-57A3C8D64DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{0553D870-7693-446A-9652-F246480B53AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0553D870-7693-446A-9652-F246480B53AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0553D870-7693-446A-9652-F246480B53AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4018F323-53D1-49F7-814E-57A3C8D64DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4018F323-53D1-49F7-814E-57A3C8D64DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4018F323-53D1-49F7-814E-57A3C8D64DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4018F323-53D1-49F7-814E-57A3C8D64DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

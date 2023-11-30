@@ -5,6 +5,11 @@ namespace MemoriKeeper.Model.DatabaseContect
 {
     public class MemoriKeeperContext : DbContext
     {
+        public MemoriKeeperContext()
+        {
+            
+        }
+
         public MemoriKeeperContext(DbContextOptions<MemoriKeeperContext> options) : base(options)
         {
             

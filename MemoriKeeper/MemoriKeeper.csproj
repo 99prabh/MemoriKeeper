@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14">
       <PrivateAssets>all</PrivateAssets>
@@ -21,4 +23,10 @@
     <ProjectReference Include="..\MemoriKeeper.Model\MemoriKeeper.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ApiControllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ApiControllers\" />
+  </ItemGroup>
 </Project>

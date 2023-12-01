@@ -15,6 +15,6 @@ namespace MemoriKeeper.Model.Models
         [StringLength(50, MinimumLength = 2)]
         public string TypeName { get; set; }
 
-        public ICollection<Attachment> Attachments { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }

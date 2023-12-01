@@ -1,10 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualBasic.FileIO;
 
 namespace MemoriKeeper.Model.Models
 {
     public class Attachment
     {
+        public Attachment()
+        {
+            Diaryentries = new HashSet<Diaryentry>();
+        }
+
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please, select type.")]
@@ -16,5 +20,6 @@ namespace MemoriKeeper.Model.Models
         public string Description { get; set; }
 
         public virtual FileType FileType { get; set; }
+        public virtual ICollection<Diaryentry> Diaryentries { get; set; }
     }
 }

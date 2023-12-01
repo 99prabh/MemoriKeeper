@@ -1,5 +1,8 @@
 using MemoriKeeper.Model.DatabaseContect;
+using MemoriKeeper.Model.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,16 @@ builder.Services.AddControllersWithViews().AddXmlDataContractSerializerFormatter
 builder.Services.AddDbContext<MemoriKeeperContext>(optins =>
 {
     optins.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+// Add identity method.
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MemoriKeeperContext>();
+
+// Add identity password configuration
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 10;
+    options.Password.RequiredUniqueChars = 3;
 });
 
 var app = builder.Build();
@@ -27,6 +40,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

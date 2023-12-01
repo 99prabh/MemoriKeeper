@@ -1,9 +1,10 @@
 ﻿using MemoriKeeper.Model.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MemoriKeeper.Model.DatabaseContect
 {
-    public class MemoriKeeperContext : DbContext
+    public class MemoriKeeperContext : IdentityDbContext<ApplicationUser>
     {
         public MemoriKeeperContext()
         {
@@ -17,6 +18,7 @@ namespace MemoriKeeper.Model.DatabaseContect
 
         public DbSet<FileType> FileTypes { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
+        public DbSet<Diaryentry> Diaryentries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

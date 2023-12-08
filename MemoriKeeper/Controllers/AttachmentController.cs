@@ -38,9 +38,9 @@ namespace MemoriKeeper.Controllers
 
             var attachment = new Model.Models.Attachment()
             {
+                Title = attachmentModel.Title,
                 FileTypeId = attachmentModel.FileTypeId,
                 FilePath = attachmentModel.FilePath,
-                Description = attachmentModel.Description
             };
 
             _dbContext.Attachments.Add(attachment);

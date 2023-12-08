@@ -13,8 +13,8 @@ namespace MemoriKeeper.Model.Models
 
         [Required(ErrorMessage = "Please, provied type name.")]
         [StringLength(50, MinimumLength = 2)]
-        public string TypeName { get; set; }
+        public string Name { get; set; }
 
-        public virtual ICollection<Attachment> Attachments { get; set; }
+        public ICollection<Attachment> Attachments { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace MemoriKeeper.Model.Models
 
         public string? City { get; set; }
 
-        public virtual ICollection<Diaryentry> Diaryentries { get; set; }
+        public ICollection<Diaryentry> Diaryentries { get; set; }
     }   
 }

@@ -9,10 +9,10 @@ namespace MemoriKeeper.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FileTypeController : ControllerBase
+    public class FileTypeApiController : ControllerBase
     {
         private readonly MemoriKeeperContext _dbContext;
-        public FileTypeController(MemoriKeeperContext dbContext) => _dbContext = dbContext;
+        public FileTypeApiController(MemoriKeeperContext dbContext) => _dbContext = dbContext;
 
         [HttpGet]
         public async Task<ActionResult<ICollection<FileType>>> GetFileTypes()

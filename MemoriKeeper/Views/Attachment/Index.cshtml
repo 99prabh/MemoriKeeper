@@ -1,0 +1,45 @@
+﻿@model ICollection<MemoriKeeper.Model.Models.Attachment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="text-center">Attachments</h5>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-sm btn-outline-primary" asp-controller="Attachment" asp-action="Create">Create Attachment</a>
+    </div>
+</div>
+<div class="row justify-content-center align-content-center mt-4">
+    <div class="col-md-8">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th class="col-md-4">Title</th>
+                    <th class="col-md-2">File Type</th>
+                    <th class="col-md-4">Image</th>
+                    <th class="col-md-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var attachment in Model)
+                {
+                    <tr>
+                        <td>@attachment.Title</td>
+                        <td>@attachment.FileType.Name</td>
+                        <td><img class="img-thumbnail" src="~/upload_images/@attachment.FilePath" width="400px" height="400px" /></td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-info" asp-controller="Attachment" asp-action="Details" asp-route-id="@attachment.Id">Edit</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-controller="Attachment" asp-action="Delete" asp-route-id="@attachment.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

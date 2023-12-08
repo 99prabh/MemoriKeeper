@@ -1,0 +1,47 @@
+﻿@model MemoriKeeper.Model.Models.Attachment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="text-center">Update Attachment</h5>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <form class="row g-3" method="post" enctype="multipart/form-data" asp-controller="Attachment" asp-action="Details">
+            <input type="hidden" asp-for="Id" />
+            <div class="col-md-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" asp-for="Title">
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="col-md-3">
+                <label for="FileTypeId" class="form-label">File Type</label>
+                <select class="form-select" id="FileTypeId" asp-for="FileTypeId">
+                    @foreach (var fileType in ViewBag.FileTypes)
+                    {
+                        <option value="@fileType.Id">@fileType.Name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="FileTypeId"></span>
+            </div>
+            <div class="col-md-3">
+                <label for="filePath" class="form-label">File Path</label>
+                <input type="file" class="form-control" id="filePath" asp-for="FilePath">
+                <span class="text-danger" asp-validation-for="FilePath"></span>
+            </div>
+            <div class="col-md-4">
+                <img class="img-thumbnail" src="~/upload_images/@Model.FilePath" width="200px" height="200px" />
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-sm btn-outline-success">Update</button>
+                <a class="btn btn-sm btn-outline-info" asp-controller="Attachment" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+

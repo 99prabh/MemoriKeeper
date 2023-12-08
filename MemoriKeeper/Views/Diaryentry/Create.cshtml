@@ -1,0 +1,43 @@
+﻿@model MemoriKeeper.Model.Models.Diaryentry;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="text-center">Create Memory</h5>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <form class="row g-3" method="post" asp-controller="Diaryentry" asp-action="Create">
+            <div class="col-md-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" asp-for="Title">
+                <span class="text-danger" asp-validation-for="Title"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="attachmentId" class="form-label">Attachment</label>
+                <select class="form-select" id="attachmentId" asp-for="AttachmentId">
+                    @foreach (var attachment in ViewBag.Attachments)
+                    {
+                        <option value="@attachment.Id">@attachment.Name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="AttachmentId"></span>
+            </div>
+            <div class="col-md-8">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" asp-for="Description" placeholder="Enter you memory details"></textarea>
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-sm btn-outline-success">Save</button>
+                <a class="btn btn-sm btn-outline-info" asp-controller="Diaryentry" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+

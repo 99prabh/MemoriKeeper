@@ -45,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=FileType}/{action=Index}/{id?}");
+    pattern: "{controller=Diaryentry}/{action=Index}/{id?}");
 
 app.Run();

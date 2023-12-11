@@ -4,6 +4,7 @@ using MemoriKeeper.Model.DatabaseContect;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MemoriKeeper.Model.Migrations
 {
     [DbContext(typeof(MemoriKeeperContext))]
-    partial class MemoriKeeperContextModelSnapshot : ModelSnapshot
+    [Migration("20231207080848_DatabaseUpdate_1003")]
+    partial class DatabaseUpdate_1003
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -12,6 +12,31 @@ namespace MemoriKeeper.Controllers
         public DiaryentryController(MemoriKeeperContext dbContext) => _dbContext = dbContext;
 
         [HttpGet]
+		public async Task<ActionResult> Index(string searchKeyword)
+		{
+			if(string.IsNullOrEmpty(searchKeyword))
+			{
+                var diaryentries = await _dbContext.Diaryentries
+                               .Include(d => d.Attachment)
+                               .Where(d => !d.IsDeleted)
+                               .ToListAsync();
+
+                return View(diaryentries);
+            }
+			else
+			{
+				var search = await _dbContext.Diaryentries
+                               .Include(d => d.Attachment)
+                               .Where(d => !d.IsDeleted
+									  && (d.Title.ToLower().Contains(searchKeyword.ToLower())
+                                      || d.Description.ToLower().Contains(searchKeyword.ToLower())))
+                               .ToListAsync();
+
+                return View(search);
+            }
+		}
+
+        [HttpGet]
         public async Task<ActionResult<MemoriKeeper.Model.Models.Diaryentry>> Index()
         {
             var diaryentries = await _dbContext.Diaryentries.Include(d => d.Attachment).ToListAsync();
@@ -28,6 +53,7 @@ namespace MemoriKeeper.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Diaryentry diaryentryModel)
         {
+			diaryentryModel.CreatedDateTime = DateTime.Now;
             _dbContext.Diaryentries.Add(diaryentryModel);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

@@ -17,7 +17,7 @@ namespace MemoriKeeper.UnitTest
             var diaryentryController = new DiaryentryController(dbContext);
 
             // Act
-            var viewResult = diaryentryController.Index();
+            var viewResult = diaryentryController.Index(null);
 
             // Assert
             Assert.AreEqual<ICollection<Diaryentry>>(diaryentries, diaryentries);

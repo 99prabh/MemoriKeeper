@@ -11,8 +11,18 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2">
         <a class="btn btn-sm btn-outline-primary" asp-controller="Diaryentry" asp-action="Create">Create Memory</a>
+    </div>
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-4 d-flax">
+        <form method="get" asp-action="Index">
+            <input type="search" class="form-control" id="searchKeyword" name="searchKeyword" 
+                placeholder="Enter your search keyword" />
+            <input type="submit" value="Search" class="btn btn-sm btn-outline-primary mt-1" /> |
+            <a class="btn btn-sm btn-outline-info mt-1" asp-controller="Diaryentry" asp-action="Index">Get All</a>
+        </form>
     </div>
 </div>
 <div class="row mt-4">
@@ -26,7 +36,9 @@
                 <img src="~/upload_images/@memory.Attachment.FilePath" class="card-img-top" alt="..." height="200px">
                 <div class="card-body">
                     <p class="card-text text-start">
-                        @Html.Raw(memory.Description.Length > 150 ? memory.Description.Substring(0, 150) + @"<br><br> Read more to click details. " : memory.Description)
+                        @Html.Raw(memory.Description.Length > 110 ? memory.Description.Substring(0, 110) + @"<br><br> Read more to click details. " : memory.Description)
+                        <br />
+                        Create Date : @memory.CreatedDateTime.ToString()
                     </p>
                 </div>
                 <div class="card-footer text-center">

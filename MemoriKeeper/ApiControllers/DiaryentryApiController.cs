@@ -36,6 +36,8 @@ namespace MemoriKeeper.ApiControllers
         [HttpPost]
         public async Task<ActionResult<Diaryentry>> Create(Diaryentry diaryentryModel)
         {
+            diaryentryModel.CreatedDateTime = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 _dbContext.Diaryentries.Add(diaryentryModel);

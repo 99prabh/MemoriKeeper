@@ -19,6 +19,8 @@ namespace MemoriKeeper.Model.Models
 
         public string? ApplicationUserId { get; set; }
         public DateTime? CreatedDateTime { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime? DeletedDateTime { get; set; }
 
         public Attachment Attachment { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

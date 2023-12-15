@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 namespace MemoriKeeper.Controllers
 {
     public class DiaryentryController : Controller
-    {
-        private readonly MemoriKeeperContext _dbContext;
-        public DiaryentryController(MemoriKeeperContext dbContext) => _dbContext = dbContext;
+	{
+		private readonly MemoriKeeperContext _dbContext;
+		public DiaryentryController(MemoriKeeperContext dbContext) => _dbContext = dbContext;
 
-        [HttpGet]
+		[HttpGet]
 		public async Task<ActionResult> Index(string searchKeyword)
 		{
 			if(string.IsNullOrEmpty(searchKeyword))
@@ -37,72 +37,79 @@ namespace MemoriKeeper.Controllers
 		}
 
         [HttpGet]
-        public async Task<ActionResult<MemoriKeeper.Model.Models.Diaryentry>> Index()
+        public async Task<ActionResult<MemoriKeeper.Model.Models.Diaryentry>> DeletedHistory()
         {
-            var diaryentries = await _dbContext.Diaryentries.Include(d => d.Attachment).ToListAsync();
+            var diaryentries = await _dbContext.Diaryentries
+                               .Include(d => d.Attachment)
+                               .Where(d => d.IsDeleted)
+                               .ToListAsync();
+
             return View(diaryentries);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            await GetAttachments();
-            return View();
-        }
+		public async Task<IActionResult> Create()
+		{
+			await GetAttachments();
+			return View();
+		}
 
-        [HttpPost]
-        public async Task<IActionResult> Create(Diaryentry diaryentryModel)
-        {
+		[HttpPost]
+		public async Task<IActionResult> Create(Diaryentry diaryentryModel)
+		{
 			diaryentryModel.CreatedDateTime = DateTime.Now;
-            _dbContext.Diaryentries.Add(diaryentryModel);
-            await _dbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+			_dbContext.Diaryentries.Add(diaryentryModel);
+			await _dbContext.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
 
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            var existDiaryentrY = await _dbContext.Diaryentries
+		[HttpGet]
+		public async Task<IActionResult> Details(int id)
+		{
+			var existDiaryentrY = await _dbContext.Diaryentries
                                   .Include(a => a.Attachment)
-                                  .Where(a => a.Id == id)
-                                  .FirstOrDefaultAsync();
+								  .Where(a => a.Id == id)
+								  .FirstOrDefaultAsync();
 
-            if (existDiaryentrY is null)
-                return BadRequest();
+			if (existDiaryentrY is null)
+				return BadRequest();
 
             await GetAttachments();
             return View(existDiaryentrY);
-        }
+		}
 
-        [HttpPost]
-        public async Task<IActionResult> Details(Diaryentry diaryentryModel)
-        {
-            _dbContext.Diaryentries.Update(diaryentryModel);
-            await _dbContext.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+		[HttpPost]
+		public async Task<IActionResult> Details(Diaryentry diaryentryModel)
+		{
+			_dbContext.Diaryentries.Update(diaryentryModel);
+			await _dbContext.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var existDiaryentry = await _dbContext.Diaryentries.Where(a => a.Id == id).FirstOrDefaultAsync();
+		[HttpGet]
+		public async Task<IActionResult> Delete(int id)
+		{
+			var existDiaryentry = await _dbContext.Diaryentries.Where(a => a.Id == id).FirstOrDefaultAsync();
 
-            if (existDiaryentry is null)
-                return BadRequest();
+			if (existDiaryentry is null)
+				return BadRequest();
 
-            _dbContext.Diaryentries.Remove(existDiaryentry);
-            await _dbContext.SaveChangesAsync();
+			existDiaryentry.IsDeleted = true;
+			existDiaryentry.DeletedDateTime = DateTime.Now;
 
-            return RedirectToAction("Index");
-        }
+			_dbContext.Diaryentries.Update(existDiaryentry);
+			await _dbContext.SaveChangesAsync();
 
-        private async Task GetAttachments()
-        {
-            ViewBag.Attachments = await _dbContext.Attachments.Select(s => new SelectListModel
-            {
-                Id = s.Id,
-                Name = s.Title
-            }).ToListAsync();
-        }
-    }
+			return RedirectToAction("Index");
+		}
+
+		private async Task GetAttachments()
+		{
+			ViewBag.Attachments = await _dbContext.Attachments.Select(s => new SelectListModel
+			{
+				Id = s.Id,
+				Name = s.Title
+			}).ToListAsync();
+		}
+	}
 }

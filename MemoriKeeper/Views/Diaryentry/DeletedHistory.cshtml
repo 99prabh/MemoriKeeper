@@ -1,0 +1,36 @@
+﻿
+@model ICollection<MemoriKeeper.Model.Models.Diaryentry>
+
+@{
+    ViewData["Title"] = "DeletedHistory";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h5 class="text-center">Deleted Histoey</h5>
+        <hr />
+    </div>
+</div>
+<div class="row mt-4">
+    @foreach (var memory in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow" style="height: 482px">
+                <div class="card-header">
+                    <h5 class="card-title text-center">@memory.Title</h5>
+                </div>
+                <img src="~/upload_images/@memory.Attachment.FilePath" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                    <p class="card-text text-start">
+                        @Html.Raw(memory.Description.Length > 110 ? memory.Description.Substring(0, 110) + @"<br><br> Read more to click details. " : memory.Description)
+                        <br />
+                        Create Date : @memory.CreatedDateTime.ToString()
+                    </p>
+                </div>
+               
+            </div>
+        </div>
+    }
+</div>
+
+

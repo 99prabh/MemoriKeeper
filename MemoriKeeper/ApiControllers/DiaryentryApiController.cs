@@ -15,7 +15,22 @@ namespace MemoriKeeper.ApiControllers
         [HttpGet]
         public async Task<ActionResult<ICollection<Diaryentry>>> GetDiaryentries()
         {
-            var diaryentries = await _dbContext.Diaryentries.Include(a => a.Attachment).ToListAsync();
+            var diaryentries = await _dbContext.Diaryentries
+                              .Include(a => a.Attachment)
+                              .Where(d => !d.IsDeleted)
+                              .ToListAsync();
+
+            return Ok(diaryentries);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ICollection<Diaryentry>>> GetDeletedDiaryentries()
+        {
+            var diaryentries = await _dbContext.Diaryentries
+                              .Include(a => a.Attachment)
+                              .Where(d => d.IsDeleted)
+                              .ToListAsync();
+
             return Ok(diaryentries);
         }
 
@@ -74,7 +89,9 @@ namespace MemoriKeeper.ApiControllers
             if (existDiaryentry == null)
                 return BadRequest();
 
-            _dbContext.Diaryentries.Remove(existDiaryentry);
+            existDiaryentry.IsDeleted = true;
+            existDiaryentry.DeletedDateTime = DateTime.Now;
+            _dbContext.Diaryentries.Update(existDiaryentry);
             await _dbContext.SaveChangesAsync();
 
             return Ok(id);
